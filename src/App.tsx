@@ -1,9 +1,11 @@
 import { useState } from 'react'
+import BrandList from './components/BrandList/BrandList'
 import CategoryList from './components/CategoryList/CategoryList'
 import Header from './components/Header/Header'
 import Hero from './components/Hero/Hero'
 import ProductModal from './components/ProductModal/ProductModal'
 import ProductSection from './components/ProductSection/ProductSection'
+import PromoBanners from './components/PromoBanners/PromoBanners'
 import { useProducts } from './hooks/useProducts'
 import type { Product } from './types/product'
 
@@ -13,21 +15,27 @@ export default function App() {
   const { products, loading, error } = useProducts()
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
 
+  // Props comuns às três vitrines de produtos
+  const shelf = {
+    title: 'Produtos relacionados',
+    products,
+    loading,
+    error,
+    onSelectProduct: setSelectedProduct,
+  }
+
   return (
     <>
       <Header />
       <main>
         <Hero />
         <CategoryList />
-        <ProductSection
-          id="produtos"
-          title="Produtos relacionados"
-          tabs={productTabs}
-          products={products}
-          loading={loading}
-          error={error}
-          onSelectProduct={setSelectedProduct}
-        />
+        <ProductSection id="produtos" tabs={productTabs} {...shelf} />
+        <PromoBanners />
+        <ProductSection {...shelf} />
+        <PromoBanners />
+        <BrandList />
+        <ProductSection {...shelf} />
       </main>
 
       <ProductModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />

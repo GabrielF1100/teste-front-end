@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import type { Product } from '../../types/product'
 import Carousel from '../Carousel/Carousel'
 import ProductCard from '../ProductCard/ProductCard'
@@ -25,7 +25,7 @@ export default function ProductSection({
   tabs,
 }: Props) {
   const [activeTab, setActiveTab] = useState(0)
-  const headingId = `${id ?? title}-title`.replace(/\s+/g, '-').toLowerCase()
+  const headingId = useId()
 
   return (
     <section className="product-section container" id={id} aria-labelledby={headingId}>
