@@ -138,3 +138,15 @@ export const DressIcon = (p: IconProps) => (
     <path d="M19 4l1.5 1.5L19 8l-1.5-2.5z" />
   </Icon>
 )
+
+export const ChevronLeftIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M15 5l-7 7 7 7" />
+  </Icon>
+)
+
+export const ChevronRightIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M9 5l7 7-7 7" />
+  </Icon>
+)

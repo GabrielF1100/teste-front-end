@@ -1,0 +1,82 @@
+@use '../../styles/variables' as *;
+
+$gap: 19px;
+$visible: 4;
+
+.carousel {
+  position: relative;
+
+  &__track {
+    display: flex;
+    gap: $gap;
+    margin-inline: -3px;
+    padding: 4px 8px 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 8px;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    > li {
+      flex: 0 0 calc((100% - #{($visible - 1) * $gap}) / #{$visible});
+      scroll-snap-align: start;
+    }
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin-top: -28px;
+    color: $color-text;
+    background: $color-surface;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &--prev {
+      left: -43px;
+    }
+
+    &--next {
+      right: -43px;
+    }
+  }
+}
+
+// Sem espaço lateral para as setas: sobrepõe aos cards
+@media (max-width: 1400px) {
+  .carousel__arrow {
+    &--prev {
+      left: 4px;
+    }
+
+    &--next {
+      right: 4px;
+    }
+  }
+}
+
+@media (max-width: $bp-tablet) {
+  .carousel__track > li {
+    flex-basis: calc((100% - #{$gap}) / 2);
+  }
+}
+
+@media (max-width: $bp-mobile) {
+  .carousel__track > li {
+    flex-basis: 78%;
+  }
+}
