@@ -10,18 +10,13 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
     height: 350px;
-    padding: 0 44px;
+    padding: 114px 44px 0;
     overflow: hidden;
     color: #fff;
     border-radius: 24px;
-    // A foto do layout não foi exportada: fundo escuro e quente como aproximação
-    background:
-      linear-gradient(180deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.55)),
-      radial-gradient(ellipse 70% 40% at 35% 18%, rgba(224, 160, 80, 0.55), transparent 70%),
-      radial-gradient(ellipse 30% 45% at 85% 30%, rgba(120, 190, 235, 0.3), transparent 70%),
-      linear-gradient(135deg, #5d4326 0%, #241a12 55%, #080808 100%);
+    background: #17120d url('../../assets/partner-bg.jpg') center / cover no-repeat;
   }
 
   &__title {
