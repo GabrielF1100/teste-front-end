@@ -28,14 +28,22 @@ const categories = [
   { label: 'Assinatura', icon: <CrownIcon size={20} /> },
 ]
 
-const actions = [
-  { label: 'Meus pedidos', icon: <BoxIcon size={30} /> },
-  { label: 'Favoritos', icon: <HeartIcon size={30} /> },
-  { label: 'Minha conta', icon: <UserIcon size={30} /> },
-  { label: 'Carrinho', icon: <CartIcon size={30} /> },
-]
+interface Props {
+  cartCount?: number
+}
 
-export default function Header() {
+export default function Header({ cartCount = 0 }: Props) {
+  const actions = [
+    { label: 'Meus pedidos', icon: <BoxIcon size={30} /> },
+    { label: 'Favoritos', icon: <HeartIcon size={30} /> },
+    { label: 'Minha conta', icon: <UserIcon size={30} /> },
+    {
+      label: cartCount > 0 ? `Carrinho (${cartCount} itens)` : 'Carrinho',
+      icon: <CartIcon size={30} />,
+      badge: cartCount,
+    },
+  ]
+
   return (
     <header className="header">
       <div className="container">
@@ -68,10 +76,15 @@ export default function Header() {
           </form>
 
           <ul className="header__actions">
-            {actions.map(({ label, icon }) => (
+            {actions.map(({ label, icon, badge }) => (
               <li key={label}>
-                <button type="button" aria-label={label}>
+                <button type="button" aria-label={label} className="header__action-btn">
                   {icon}
+                  {badge !== undefined && badge > 0 && (
+                    <span className="header__cart-badge" aria-live="polite">
+                      {badge}
+                    </span>
+                  )}
                 </button>
               </li>
             ))}

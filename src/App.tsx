@@ -16,6 +16,11 @@ const productTabs = ['Celular', 'Acessórios', 'Tablets', 'Notebooks', 'TVs', 'V
 export default function App() {
   const { products, loading, error } = useProducts()
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
+  const [cartCount, setCartCount] = useState(0)
+
+  function handleAddToCart(_product: Product, quantity: number) {
+    setCartCount((prev) => prev + quantity)
+  }
 
   // Props comuns às três vitrines de produtos
   const shelf = {
@@ -28,7 +33,7 @@ export default function App() {
 
   return (
     <>
-      <Header />
+      <Header cartCount={cartCount} />
       <main>
         <Hero />
         <CategoryList />
@@ -42,7 +47,11 @@ export default function App() {
       </main>
       <Footer />
 
-      <ProductModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />
+      <ProductModal
+        product={selectedProduct}
+        onClose={() => setSelectedProduct(null)}
+        onAddToCart={handleAddToCart}
+      />
     </>
   )
 }

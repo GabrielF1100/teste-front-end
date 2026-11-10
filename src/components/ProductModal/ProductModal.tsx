@@ -11,15 +11,24 @@ const MAX_QUANTITY = 99
 interface Props {
   product: Product | null
   onClose: () => void
+  onAddToCart?: (product: Product, quantity: number) => void
 }
 
-export default function ProductModal({ product, onClose }: Props) {
+export default function ProductModal({ product, onClose, onAddToCart }: Props) {
   if (!product) return null
   // key: reinicia a quantidade sempre que outro produto é aberto
-  return <ModalContent key={product.id} product={product} onClose={onClose} />
+  return <ModalContent key={product.id} product={product} onClose={onClose} onAddToCart={onAddToCart} />
 }
 
-function ModalContent({ product, onClose }: { product: Product; onClose: () => void }) {
+function ModalContent({
+  product,
+  onClose,
+  onAddToCart,
+}: {
+  product: Product
+  onClose: () => void
+  onAddToCart?: (product: Product, quantity: number) => void
+}) {
   const dialogRef = useRef<HTMLDialogElement>(null)
   const [quantity, setQuantity] = useState(MIN_QUANTITY)
   const [added, setAdded] = useState(false)
@@ -46,6 +55,11 @@ function ModalContent({ product, onClose }: { product: Product; onClose: () => v
   function changeQuantity(delta: number) {
     setAdded(false)
     setQuantity((current) => Math.min(MAX_QUANTITY, Math.max(MIN_QUANTITY, current + delta)))
+  }
+
+  function handleBuy() {
+    onAddToCart?.(product, quantity)
+    setAdded(true)
   }
 
   return (
@@ -100,7 +114,7 @@ function ModalContent({ product, onClose }: { product: Product; onClose: () => v
               </button>
             </div>
 
-            <button type="button" className="product-modal__buy" onClick={() => setAdded(true)}>
+            <button type="button" className="product-modal__buy" onClick={handleBuy}>
               Comprar
             </button>
           </div>
