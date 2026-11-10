@@ -1,10 +1,15 @@
+import CategoryList from './components/CategoryList/CategoryList'
 import Header from './components/Header/Header'
+import Hero from './components/Hero/Hero'
 
 export default function App() {
   return (
     <>
       <Header />
-      <main />
+      <main>
+        <Hero />
+        <CategoryList />
+      </main>
     </>
   )
 }
