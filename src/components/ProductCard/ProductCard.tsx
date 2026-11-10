@@ -9,6 +9,7 @@ interface Props {
 
 export default function ProductCard({ product, onSelect }: Props) {
   const { productName, descriptionShort, photo, price } = product
+  const oldPrice = Math.round(price * 1.07)
 
   return (
     <article className="product-card">
@@ -29,6 +30,7 @@ export default function ProductCard({ product, onSelect }: Props) {
         <h3 className="product-card__name">{descriptionShort}</h3>
       </button>
 
+      <p className="product-card__old-price">{formatCurrency(oldPrice)}</p>
       <p className="product-card__price">{formatCurrency(price)}</p>
       <p className="product-card__installments">ou 2x de {formatCurrency(price / 2)} sem juros</p>
       <p className="product-card__shipping">Frete grátis</p>
