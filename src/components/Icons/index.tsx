@@ -168,3 +168,23 @@ export const PlusIcon = (p: IconProps) => (
     <path d="M12 5v14M5 12h14" />
   </Icon>
 )
+
+export const InstagramIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <rect x="3" y="3" width="18" height="18" rx="4" />
+    <circle cx="12" cy="12" r="4" />
+    <circle cx="17.2" cy="6.8" r="0.8" fill="currentColor" stroke="none" />
+  </Icon>
+)
+
+export const FacebookIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M15 3h-2.5A3.5 3.5 0 009 6.5V10H6.5v3.5H9V21h3.5v-7.5H15l.5-3.5h-3V6.8c0-.7.3-1.3 1.2-1.3H15V3z" />
+  </Icon>
+)
+
+export const LinkedinIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M5.5 9.5v9M5.5 6v.01M9.5 18.5v-6a3 3 0 016 0v6M9.5 9.5v9" />
+  </Icon>
+)
