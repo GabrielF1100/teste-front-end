@@ -150,3 +150,21 @@ export const ChevronRightIcon = (p: IconProps) => (
     <path d="M9 5l7 7-7 7" />
   </Icon>
 )
+
+export const CloseIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M5 5l14 14M19 5L5 19" />
+  </Icon>
+)
+
+export const MinusIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M5 12h14" />
+  </Icon>
+)
+
+export const PlusIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M12 5v14M5 12h14" />
+  </Icon>
+)
